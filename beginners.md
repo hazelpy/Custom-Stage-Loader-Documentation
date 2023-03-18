@@ -3,8 +3,7 @@
 Although it may look intimidating, making stages using the Custom Stage Loader is not too challenging.
 This page will give you the rundown on how to make *your* first stage and package it for everyone else to use.
 
-?>This page is still under construction. If you have any concerns, please contact us so we can update this page!
-You can find us in our [discord server](https://discord.gg/keTcqpUQVG).
+[](./notice.md ':include')
 
 ## Preparing Your ModMain.gd
 

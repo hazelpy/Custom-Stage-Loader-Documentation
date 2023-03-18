@@ -1,0 +1,2 @@
+?>Documentation is *typically* up to date, but please let us know if you run into an outdated piece of information. 
+We're trying our best. You can find us in our [discord server](https://discord.gg/keTcqpUQVG).
