@@ -10,4 +10,4 @@ See *[Getting Started](beginners.md)* for information on how to use the Custom S
 ?> Documentation is *typically* up to date, but please let us know if you run into an outdated piece of information. We're trying our best.
 
 ### Stage building
-+ **[CustomStageBuilder.gd](CSL/CustomStageBuilder.md)** - Utilities for building stage metadata.
++ **[CustomStageBuilder.gd](API/CSL/CustomStageBuilder.md)** - Utilities for building stage metadata.

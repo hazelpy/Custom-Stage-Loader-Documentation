@@ -18,4 +18,4 @@ You can find us [here](https://discord.gg/keTcqpUQVG).
 ### *"What can I do with the Custom Stage Loader?"*
 
 The latest version of the Custom Stage Loader has all sorts of functionality, such as **animated sprites**, **fixed parallax layers** and more.
-Make sure to check out the [API Reference](api-reference.md) page for more information.
+Make sure to check out the [API Reference](API/api-reference.md) page for more information.
