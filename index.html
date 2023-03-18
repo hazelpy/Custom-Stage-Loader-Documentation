@@ -13,28 +13,165 @@
 	</head>
 
 	<body>
-	   <div id="app"></div>
+	  <div id="app"></div>
 
-	   <script>
-		 // Docsify Configuration
-		 window.$docsify = {
+		<style>
+			.content a:not(.anchor) {
+				color: #3498db;
+				text-decoration: none;
+			}
+			
+			.content a:not(.anchor):hover {
+					color: #59afe8;
+					text-decoration: underline;
+			}
+			
+			.content a:not(.anchor):visited {
+					color: #a563bf;
+					text-decoration: none;
+			}
+			
+			.content a:not(.anchor):visited:hover {
+					color: #b77fcd;
+					text-decoration: underline;
+			}
+
+			h3.gd {
+				font-weight: 400;
+			}
+
+			.csl {
+				font-weight: 700;
+				color: #9bff9b;
+			}
+		</style>
+	  <script>
+		const GODOT_DOCS_BASE = 'https://docs.godotengine.org/en/3.5';
+		const GODOT_TYPES = ['int', 'float', 'bool', 'String', 'Array', 'Dictionary', 'Node', 'Node2D', 'Vector2', 'Vector3', 'Plane', 'Variant'];
+		const TYPE_MAP = {
+			...(GODOT_TYPES.reduce((p, v) => ({ ...p, [v]: `${GODOT_DOCS_BASE}/classes/class_${v.toLowerCase()}.html`}), {}))
+		};
+
+		function renderType(_type, frontmatter) {
+			if (!_type) return 'void';
+			const extraTypes = typeof frontmatter.types === 'object' ? frontmatter.types : {};
+			const types = Object.assign({}, TYPE_MAP, extraTypes);
+			let type = _type;
+			let isArray = false;
+			if (type.endsWith('[]')) {
+				isArray = true;
+				type = type.slice(0, -2);
+			}
+			if (!types[type]) return type;
+			let href = types[type];
+			if (href.startsWith('#')) {
+				const currentUrl = new URL(location.href);
+				currentUrl.hash = `${currentUrl.hash.split('?')[0]}?id=${href.slice(1)}`;
+				href = currentUrl.href;
+			} else if (href.startsWith('/')) href = '#' + href;
+
+			const linkedType = `<a href="${href}">${type}</a>`;
+			return isArray ? `${renderType('Array', frontmatter)}&lt;${linkedType}&gt;` : linkedType;
+		}
+
+		// Docsify Configuration
+		window.$docsify = {
 			loadSidebar: true,
 			subMaxLevel: 2,
 			alias: {
 			  '/#/_sidebar.md': '/_sidebar.md'
 			},
 			
-			search: "auto"
-		 };
-	   </script>
+			search: 'auto',
+			
+			mustache: {
+				noPackage: true,
+				data: [
+					{
+						CSL: '<span class="csl">@CSL</span>',
+						debugLogFrontmatter() {
+							console.log(this);
+							return '';
+						},
+						renderPropertyTable() {
+							if (!this.properties) return '[no properties!]';
+							let tableResult = commonTags.stripIndents`
+								| Type | Name | Default Value |
+								| ----- | ------ | -------------- |
+							`;
 
-	   <!-- Required -->
-	   <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js"></script>
-	   <script src="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/js/docsify-themeable.min.js"></script>
-	   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-gdscript.min.js"></script>
+							for (const prop of this.properties) {
+								tableResult += `\n| ${renderType(prop.type, this)} | [${prop.name}](#${prop.name}) | ${prop.default != undefined ? `\`${prop.default}\`` : ''} |`
+							}
 
-	   <!-- Recommended -->
-	   <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.js"></script>
-	   <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/zoom-image.min.js"></script>
+							return tableResult;
+						},
+						renderPropertyDescriptions() {
+							if (!this.properties) return '[no properties!]';
+							let result = '';
+							return this.properties.map((prop) => {
+								let result = `<h3 class="gd" id="${prop.name}"> ${renderType(prop.type, this)} <b>${prop.name}</b></h3>`;
+
+								const postHeaderTable = [];
+								if (prop.default !== undefined)
+									postHeaderTable.push(['<i>Default</i>', `<code>${prop.default}</code>`]);
+								if (postHeaderTable.length)
+									result += '\n\n<table><tbody>' + postHeaderTable.map((row) => `<tr>${row.map((cell) => `<td>${cell}</td>`).join('')}</tr>`).join('') + '</tbody></table>'
+
+								if (prop.description) result += '\n\n' + (Array.isArray(prop.description) ? prop.description.join('\n') : prop.description).replaceAll('{{{CSL}}}', this.CSL);
+
+								return result;
+							}).join('\n\n---\n\n')
+						},
+						renderMethodTable() {
+							if (!this.methods) return '[no methods!]';
+							let tableResult = commonTags.stripIndents`
+								| Return Type | Method |
+								| ----- | ------ |
+							`;
+
+							for (const method of this.methods) {
+								const args = method.args || [];
+								tableResult += `\n| ${renderType(method.returns, this)} | [${method.name}](#${method.name}) **(** ${
+									args.map((arg) => `${renderType(arg.type, this)} ${arg.name}` + (arg.default ? `=${arg.default}` : '')).join(', ')
+								} **)** |`
+							}
+
+							return tableResult;
+						},
+						renderMethodDescriptions() {
+							if (!this.methods) return '[no methods!]';
+							let result = '';
+							return this.methods.map((method) => {
+								const args = method.args || [];
+								let result = `<h3 class="gd" id="${method.name}"> ${renderType(method.returns, this)} <b>${method.name} (</b> ${
+									args.map((arg) => `${renderType(arg.type, this)} ${arg.name}` + (arg.default ? `=${arg.default}` : '')).join(', ')
+								} <b>)</b></h3>`;
+
+								if (method.description) result += '\n\n' + (Array.isArray(method.description) ? method.description.join('\n') : method.description).replaceAll('{{{CSL}}}', this.CSL);
+
+								return result;
+							}).join('\n\n---\n\n')
+						},
+					}
+				]
+			}
+		};
+	  </script>
+
+		<!-- Required -->
+		<script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/js/docsify-themeable.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-gdscript.min.js"></script>
+		<script src="https://unpkg.com/common-tags"></script>
+		<script src="https://unpkg.com/js-yaml@3.10.0/dist/js-yaml.js"></script>
+		<script src="/_scripts/yamlFront.js"></script>
+
+		<!-- Recommended -->
+		<script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js"></script>
+		<script src="/_scripts/yamlPlugin.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/zoom-image.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/docsify-copy-code@2/dist/docsify-copy-code.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/docsify-mustache"></script>
 	</body>
 </html>
