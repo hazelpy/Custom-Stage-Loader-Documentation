@@ -3,3 +3,5 @@
 * [API Reference](api-reference.md)
   * [General use]()
     * [CustomStageBuilder](CSL/CustomStageBuilder.md)
+  * [API classes]()
+    * [StageBackground](API/StageBackground.md)
