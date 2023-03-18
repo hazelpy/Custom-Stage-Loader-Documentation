@@ -1,4 +1,6 @@
 ---
+inherits: Reference
+
 properties:
   - name: materials
     type: int
@@ -166,11 +168,9 @@ methods:
       Returns an array containing all pieces of metadata with the `type` key set to `query`.
 ---
 
-{{debugLogFrontmatter}}
-
 # CustomStageBuilder
 
-**Inherits:** Reference
+{{{renderInherits}}}
 
 This is the class used for building stage metadata.
 

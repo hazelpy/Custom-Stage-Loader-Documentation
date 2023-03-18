@@ -47,10 +47,33 @@
 		</style>
 	  <script>
 		const GODOT_DOCS_BASE = 'https://docs.godotengine.org/en/3.5';
-		const GODOT_TYPES = ['int', 'float', 'bool', 'String', 'Array', 'Dictionary', 'Node', 'Node2D', 'Vector2', 'Vector3', 'Plane', 'Variant'];
+		const GODOT_TYPES = [
+			'int', 'float', 'bool', 'String', 'Variant', 'Array', 'Dictionary',
+			'Vector2', 'Vector3', 'Plane',
+			'Reference', 'Object',
+			'Node', 'Node2D',
+			'CanvasItem', 'CanvasLayer',
+			'ParallaxBackground', 'ParallaxLayer'
+		];
 		const TYPE_MAP = {
-			...(GODOT_TYPES.reduce((p, v) => ({ ...p, [v]: `${GODOT_DOCS_BASE}/classes/class_${v.toLowerCase()}.html`}), {}))
+			...(GODOT_TYPES.reduce((p, v) => ({ ...p, [v]: `${GODOT_DOCS_BASE}/classes/class_${v.toLowerCase()}.html`}), {})),
+			CustomStageBuilder: '/API/CSL/CustomStageBuilder',
+			StageBackground: '/API/StageBackground'
 		};
+		const INHERIT_MAP = {
+			CanvasLayer: 'Node',
+			CanvasItem: 'Node',
+			ParallaxBackground: 'CanvasLayer',
+			ParallaxLayer: 'Node2D',
+			Node: 'Object',
+			Node2D: 'CanvasItem',
+			Reference: 'Object',
+
+			StageBackground: 'ParallaxBackground',
+			StageCanvas: 'CanvasLayer',
+			StageElement: 'TilingSprite',
+			TilingSprite: 'Node2D'
+		}
 
 		function renderType(_type, frontmatter) {
 			if (!_type) return 'void';
@@ -95,6 +118,22 @@
 						debugLogFrontmatter() {
 							console.log(this);
 							return '';
+						},
+						renderInherits() {
+							if (!this.inherits) return '';
+							const inherits = Array.isArray(this.inherits) ? this.inherits : [this.inherits];
+							const expandedInherits = [];
+							for (const inherit of inherits) {
+								let currentInherit = inherit
+								expandedInherits.push(inherit);
+								if (!INHERIT_MAP[inherit]) continue;
+								while (INHERIT_MAP[currentInherit]) {
+									const nextInherit = INHERIT_MAP[currentInherit];
+									expandedInherits.push(nextInherit);
+									currentInherit = nextInherit;
+								}
+							}
+							return `**Inherits:** ${expandedInherits.map((type) => renderType(type, this)).join(' <strong>&lt;</strong> ')}`;
 						},
 						renderPropertyTable() {
 							if (!this.properties) return '[no properties!]';
