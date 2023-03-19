@@ -163,7 +163,7 @@
 							if (!this.properties) return '[no properties!]';
 							let result = '';
 							return this.properties.map((prop) => {
-								let result = `<h3 class="gd" id="${prop.name}"> ${renderType(prop.type, this)} <b>${prop.name}</b></h3>`;
+								let result = `<h3 class="gd" id="${prop.name.toLowerCase()}"> ${renderType(prop.type, this)} <b>${prop.name}</b></h3>`;
 
 								const postHeaderTable = [];
 								if (prop.default !== undefined)
@@ -197,7 +197,7 @@
 							let result = '';
 							return this.methods.map((method) => {
 								const args = method.args || [];
-								let result = `<h3 class="gd" id="${method.name}"> ${renderType(method.returns, this)} <b>${method.name} (</b> ${
+								let result = `<h3 class="gd" id="${method.name.toLowerCase()}"> ${renderType(method.returns, this)} <b>${method.name} (</b> ${
 									args.map((arg) => `${renderType(arg.type, this)} ${arg.name}` + (arg.default ? `=${arg.default}` : '')).join(', ')
 								} <b>)</b></h3>`;
 
