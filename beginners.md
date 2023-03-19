@@ -19,8 +19,7 @@ onready var CustomStageBuilder = load("res://custom_stage_loader/CustomStageBuil
 var Builder;
 var Loader;
 
-# _init() is called when the mod is loaded
-func _init(modLoader = ModLoader):
+func _ready():
 	# We call the build_stage() function after the game's process queue clears up
 	# This is to ensure no errors occur.
 	call_deferred("build_stage");
