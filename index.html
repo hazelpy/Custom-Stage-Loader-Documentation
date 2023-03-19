@@ -58,6 +58,7 @@
 		const TYPE_MAP = {
 			...(GODOT_TYPES.reduce((p, v) => ({ ...p, [v]: `${GODOT_DOCS_BASE}/classes/class_${v.toLowerCase()}.html`}), {})),
 			CustomStageBuilder: '/API/CSL/CustomStageBuilder',
+			CustomStageLoader: '/API/CSL/CustomStageLoader',
 			StageBackground: '/API/StageBackground'
 		};
 		const INHERIT_MAP = {
@@ -114,7 +115,7 @@
 				noPackage: true,
 				data: [
 					{
-						CSL: '<span class="csl">@CSL</span>',
+						CSL: '<span class="csl">CSL</span>',
 						debugLogFrontmatter() {
 							console.log(this);
 							return '';

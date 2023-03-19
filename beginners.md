@@ -27,7 +27,7 @@ func _ready():
 # Here is where the stage building takes place.
 func build_stage():
 	Builder = CustomStageBuilder.new(); # For building the stage metadata
-	Loader = get_tree().get_root().get_node("@CSL"); # For loading the stage itself
+	Loader = get_tree().get_root().get_node("CSL"); # For loading the stage itself
 	
 	pass;
 ```
@@ -46,7 +46,7 @@ We'll be adding a call to the builder's `make_background()` function. See [Custo
 # Here is where the stage building takes place.
 func build_stage():
 	Builder = CustomStageBuilder.new(); # For building the stage metadata
-	Loader = get_tree().get_root().get_node("@CSL"); # For loading the stage itself
+	Loader = get_tree().get_root().get_node("CSL"); # For loading the stage itself
 	
 	Builder.make_background("MainBackground"); # Creating a background to hold our layers
 	
