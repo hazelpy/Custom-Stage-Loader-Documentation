@@ -39,7 +39,7 @@ Now, we'll begin building your stage! Make sure you're working inside of Godot, 
 
 In this example, we'll be adding a scrolling ground layer and parallax sky layer. 
 To start, we'll have to make a `StageBackground` using our stage builder. To do so, simply move on down to your `build_stage()` function.
-We'll be adding a call to the builder's `make_background()` function. See [CustomStageBuilder](API/CSL/CustomStageBuilder.md) TODO: link func
+We'll be adding a call to the builder's `make_background()` function. See [CustomStageBuilder](API/CSL/CustomStageBuilder.md?id=make_background)
 
 ```gdscript
 # ...
