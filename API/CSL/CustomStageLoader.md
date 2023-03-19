@@ -18,7 +18,7 @@ properties:
     description: Current stage selection as array index.
   - name: stages
     type: "Dictionary[]"
-    default: []
+    default: "[]"
     description: The array that holds all present array data.
 methods:
   - name: make_background
