@@ -70,10 +70,10 @@ in our case, this will be `MainBackground`
 	pass;
 ```
 
-?>`StageLayer`s can also have one more additional parameter, it being a `Dictionary` called `data` on wich we can modify the behaviour of the Layer,
- as its position, scale, motion_mirroring, etc. See [UNFINISHED]()
+?>`StageLayer`s can also have one more additional parameter `data`, in which we can modify the behaviors of the Layer,
+ such as its position, scale, motion_mirroring, etc. See [UNFINISHED]()
 
- For adding the visual part of our scrolling ground, or in other words, the `StageElement`, we will need to create a new `Resource` of the type `SpriteFrames`.
- Name it as you wish, but for convention, name it the same name as the sprite.
+ For adding the visual part of our scrolling ground, or in other words, the `StageElement`, we will need to create a new `SpriteFrames` resource.
+ Name it as you wish, but for convenience's sake, we'll name ours the same as the sprite.
 
- ![alt text](./media/1.png "Creating a SpriteFrames Resource")
+>![alt text](./media/1.png "Creating a SpriteFrames Resource")
