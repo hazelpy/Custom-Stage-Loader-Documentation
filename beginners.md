@@ -56,3 +56,24 @@ func build_stage():
 ?>`StageBackground`s, when noted from the `CustomStageBuilder` class, are typically only built to hold `StageLayer` instances.
 This doesn't mean that you can't add other types of objects using the builder's `add_asset()` function. See [UNFINISHED]()
 
+To make a scrolling ground, we first need to create a `StageLayer`.
+For this we can use `make_layer()`, passing the name parameter and calling `get_material_id()` so we can determine the parent `StageBackground` of this layer,
+in our case, this will be `MainBackground`
+
+```gdscript
+	# ...
+
+	Builder.make_background("MainBackground"); # Creating a background to hold our layers
+	
+	Builder.make_layer("GroundLayer", Builder.get_material_id("MainBackground")) # Creating the ground layer, making it a child of MainBackground
+
+	pass;
+```
+
+?>`StageLayer`s can also have one more additional parameter, it being a `Dictionary` called `data` on wich we can modify the behaviour of the Layer,
+ as its position, scale, motion_mirroring, etc. See [UNFINISHED]()
+
+ For adding the visual part of our scrolling ground, or in other words, the `StageElement`, we will need to create a new `Resource` of the type `SpriteFrames`.
+ Name it as you wish, but for convention, name it the same name as the sprite.
+
+ ![alt text](./media/1.png "Creating a SpriteFrames Resource")
