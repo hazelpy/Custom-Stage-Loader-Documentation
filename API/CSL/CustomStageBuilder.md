@@ -1,4 +1,5 @@
 ---
+name: CustomStageBuilder
 inherits: Reference
 
 properties:
@@ -171,6 +172,8 @@ methods:
 # CustomStageBuilder
 
 {{{renderInherits}}}
+
+{{{renderInheritedBy}}}
 
 This is the class used for building stage metadata.
 

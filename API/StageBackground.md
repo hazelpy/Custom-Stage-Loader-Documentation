@@ -1,4 +1,5 @@
 ---
+name: StageBackground
 inherits: ParallaxBackground
 
 properties:
@@ -19,6 +20,8 @@ properties:
 # StageBackground
 
 {{{renderInherits}}}
+
+{{{renderInheritedBy}}}
 
 This is the base holder for anything with parallax.
 

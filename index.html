@@ -135,6 +135,16 @@
 							}
 							return `**Inherits:** ${expandedInherits.map((type) => renderType(type, this)).join(' <strong>&lt;</strong> ')}`;
 						},
+						renderInheritedBy() {
+							if (!this.name) return '';
+							const dependencies = [];
+							for (const inherit of Object.keys(INHERIT_MAP)) {
+								if (INHERIT_MAP[inherit] !== this.name) continue;
+								dependencies.push(inherit);
+							}
+							if (!dependencies.length) return '';
+							return `**Inherited By:** ${dependencies.map((type) => renderType(type, this)).join(', ')}`;
+						},
 						renderPropertyTable() {
 							if (!this.properties) return '[no properties!]';
 							let tableResult = commonTags.stripIndents`
