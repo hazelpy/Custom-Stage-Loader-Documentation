@@ -10,16 +10,16 @@ properties:
     type: Dictionary
     description: Holds the data of the currently selected stage. Is refreshed using the [`update_stage_selection`](#update_stage_selection) function whenever a stage is loaded.
   - name: stage_holder
-	type: Variant
-	description: The root StageCanvas that holds all stage materials. See [StageCanvas](API/CSL/StageCanvas.md)
+    type: Variant
+    description: The root StageCanvas that holds all stage materials. See [StageCanvas](API/CSL/StageCanvas.md)
   - name: cur_stage
-	type: int
-	default: 0
-	description: Current stage selection as array index.
+    type: int
+    default: 0
+    description: Current stage selection as array index.
   - name: stages
-	type: "Dictionary[]"
-	default: []
-	description: The array that holds all present array data.
+    type: "Dictionary[]"
+    default: []
+    description: The array that holds all present array data.
 methods:
   - name: make_background
     returns: Dictionary
