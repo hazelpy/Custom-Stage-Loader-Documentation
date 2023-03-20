@@ -170,7 +170,7 @@ You can now zip the folder and place it in the `mods` folder for testing. If eve
 
 >![alt text](./media/6.png "The mod working in game")
 
-Feel free to download this example stage yourself and try it out! The download link is [here](files/MyFirstStage.zip ':ignore').
+Feel free to download this example stage yourself and try it out! The download link is <a href="https://hazelpy.github.io/Custom-Stage-Loader-Documentation/files/MyFirstStage.zip">here</a>.
 
 ?>Feel free to explore the rest of the documentation and see what results you can come up with! <br>
 Come and share how your first stage turned out in our [Discord server](https://discord.gg/keTcqpUQVG).
