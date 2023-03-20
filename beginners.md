@@ -142,6 +142,8 @@ After all that, we have completed our stage!
 
 >![alt text](./media/4.png "Final Results")
 
+## Exporting the Stage
+
 For exporting, create a folder where you `ModMain.gd` and your assets will sit, in our case, it is named `MyFirstStage`. Create a new file called `_metadata`, it must be a file without a extension.
 
 >![alt text](./media/5.png "The files of our mod")
