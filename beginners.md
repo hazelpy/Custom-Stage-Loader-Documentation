@@ -135,3 +135,9 @@ In my case, i added several sprites to my `SpriteFrames` resource of the clouds,
 		"h_tile": true,
 	})
 ```
+
+After all that, we have completed our stage!
+
+>![alt text](./media/4.png "Final Results")
+
+?>Feel free to explore the rest of the documentation and see wich results you can come up with! Come and share how your first stage turned out in our [Discord server](https://discord.gg/keTcqpUQVG)
