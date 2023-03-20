@@ -153,21 +153,24 @@ For exporting, create a folder where you `ModMain.gd` and your assets will sit, 
 ```json
 {
 	"name": "myFirstStage",
-  	"friendly_name": "My First Stage",
-  	"description": "Adds a stage made following the Custom Stage Loader documentation.",
-  	"author": "Fleig",
-  	"version": "1.0",
-  	"link": "",
-  	"id": "",
-  	"requires": ["customStageLoader"],
-  	"overwrites": false,
-  	"client_side": true,
-  	"priority": 1
+	"friendly_name": "My First Stage",
+	"description": "Adds a stage made following the Custom Stage Loader documentation.",
+	"author": "Fleig",
+	"version": "1.0",
+	"link": "",
+	"id": "",
+	"requires": ["customStageLoader"],
+	"overwrites": false,
+	"client_side": true,
+	"priority": 1
 }
 ```
 
-You can now zip the folder and place it in the `mods` folder for testing. If everything went well, the stage should appear on the `Mod List`
+You can now zip the folder and place it in the `mods` folder for testing. If everything went well, the stage should appear on the `Mod List`.
 
 >![alt text](./media/6.png "The mod working in game")
 
-?>Feel free to explore the rest of the documentation and see wich results you can come up with! Come and share how your first stage turned out in our [Discord server](https://discord.gg/keTcqpUQVG)
+Feel free to download this example stage yourself and try it out! The download link is [here](files/MyFirstStage.zip ':ignore').
+
+?>Feel free to explore the rest of the documentation and see what results you can come up with! <br>
+Come and share how your first stage turned out in our [Discord server](https://discord.gg/keTcqpUQVG).
