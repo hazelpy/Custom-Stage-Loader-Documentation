@@ -17,7 +17,7 @@ properties:
 
 A ParallaxLayer "extension" for stages.
 
-[](../../notice.md ':include')
+[](../notice.md ':include')
 
 ## Description
 
