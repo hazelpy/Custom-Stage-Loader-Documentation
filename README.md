@@ -7,7 +7,7 @@ Feel free to check out the [Getting Started](beginners.md) page for info on wher
 
 | Latest Tested Version | Most Stable Version |
 | :------------------------: | :-----------------------: |
-| Version steam-1.3.6   | Version steam-1.3.6  |
+| Version steam-1.3.9   | Version steam-1.3.9  |
 
 ?>Note: If the mod hasn't been tested on the latest version of _Your Only Move Is Hustle,_ 
 that doesn't mean it won't work. **Feel free to try it out and send us your feedback!** 
