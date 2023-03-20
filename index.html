@@ -206,6 +206,20 @@
 								return result;
 							}).join('\n\n---\n\n')
 						},
+						renderSignals() {
+							if (!this.signals) return '[no signals!]';
+							let result = '';
+							return this.signals.map((signal) => {
+								const args = signal.args || [];
+								let result = `<h3 class="gd" id="${signal.name.toLowerCase()}"> <b>${signal.name} (</b> ${
+									args.map((arg) => `${renderType(arg.type, this)} ${arg.name}` + (arg.default ? `=${arg.default}` : '')).join(', ')
+								} <b>)</b></h3>`;
+
+								if (signal.description) result += '\n\n' + (Array.isArray(signal.description) ? signal.description.join('\n') : signal.description).replaceAll('{{{CSL}}}', this.CSL);
+
+								return result;
+							}).join('\n\n---\n\n')
+						},
 					}
 				]
 			}
