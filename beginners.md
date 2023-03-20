@@ -46,6 +46,8 @@ func build_stage():
 	Builder = CustomStageBuilder.new() # For building the stage metadata
 	Loader = get_tree().get_root().get_node("CSL") # For loading the stage itself
 
+	Builder.data.stage_name = "My First Stage" # Setting the name of the stage
+
 	Builder.make_background("GroundBackground", {"layer": 1}) # Creating a background to hold our layers setting it's index to 1, so it renders on front.
 ```
 
@@ -139,5 +141,31 @@ In my case, i added several sprites to my `SpriteFrames` resource of the clouds,
 After all that, we have completed our stage!
 
 >![alt text](./media/4.png "Final Results")
+
+For exporting, create a folder where you `ModMain.gd` and your assets will sit, in our case, it is named `MyFirstStage`. Create a new file called `_metadata`, it must be a file without a extension.
+
+>![alt text](./media/5.png "The files of our mod")
+
+`_metadata` should be formatted as a .json, the keys are as follows:
+
+```json
+{
+	"name": "myFirstStage",
+  	"friendly_name": "My First Stage",
+  	"description": "Adds a stage made following the Custom Stage Loader documentation.",
+  	"author": "Fleig",
+  	"version": "1.0",
+  	"link": "",
+  	"id": "",
+  	"requires": ["customStageLoader"],
+  	"overwrites": false,
+  	"client_side": true,
+  	"priority": 1
+}
+```
+
+You can now zip the folder and place it in the `mods` folder for testing. If everything went well, the stage should appear on the `Mod List`
+
+>![alt text](./media/6.png "The mod working in game")
 
 ?>Feel free to explore the rest of the documentation and see wich results you can come up with! Come and share how your first stage turned out in our [Discord server](https://discord.gg/keTcqpUQVG)
