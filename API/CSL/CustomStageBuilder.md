@@ -16,6 +16,7 @@ properties:
       - "```gdscript"
       - "data = {"
       - '  "stage_name": "New Stage",'
+      - '  "stage_icon": null,'
       - '  "materials": [],'
       - "};"
       - "```"
@@ -24,8 +25,6 @@ methods:
   - name: make_background
     returns: Dictionary
     args:
-      - name: background_name
-        type: String
       - name: params
         type: Dictionary
         default: '{}'
