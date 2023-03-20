@@ -6,3 +6,4 @@
     * [CustomStageAPI](API/CSL/CustomStageAPI.md)
   * API classes
     * [StageBackground](API/StageBackground.md)
+    * [StageLayer](API/StageLayer.md)

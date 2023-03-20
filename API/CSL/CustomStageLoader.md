@@ -79,6 +79,11 @@ An instance of this node can usually be found in the root of the scene tree.
 get_tree().get_root().get_node("CSL");
 ```
 
+### The `loaded_by` Hook
+
+When materials are loaded from the root of the [`stage_data.materials`](#stage_data) array by the [`load_stage`](#load_stage) method, said material will be placed in the spot
+specified by the material's `loaded_by` property. If the material doesn't have that property, it's loaded directly underneath the [`stage_holder`](#stage_holder) node.
+
 ## Properties
 
 {{{renderPropertyTable}}}
