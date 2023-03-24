@@ -60,7 +60,7 @@ methods:
       to update their references, giving them fresh access to the Game node.
 ---
 
-# CustomStageLoader
+{{{renderName}}}
 
 {{{renderInherits}}}
 

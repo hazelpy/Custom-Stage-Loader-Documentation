@@ -168,7 +168,7 @@ methods:
       Returns an array containing all pieces of metadata with the `type` key set to `query`.
 ---
 
-# CustomStageBuilder
+{{{renderName}}}
 
 {{{renderInherits}}}
 

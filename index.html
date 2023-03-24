@@ -51,7 +51,8 @@
 			'int', 'float', 'bool', 'String', 'Variant', 'Array', 'Dictionary',
 			'Vector2', 'Vector3', 'Plane',
 			'Reference', 'Object',
-			'Node', 'Node2D',
+			'Texture', 'Resource', 'StreamTexture', 'SpriteFrames',
+			'Node', 'Node2D', 'Camera2D',
 			'CanvasItem', 'CanvasLayer',
 			'ParallaxBackground', 'ParallaxLayer'
 		];
@@ -59,21 +60,31 @@
 			...(GODOT_TYPES.reduce((p, v) => ({ ...p, [v]: `${GODOT_DOCS_BASE}/classes/class_${v.toLowerCase()}.html`}), {})),
 			CustomStageBuilder: '/API/CSL/CustomStageBuilder',
 			CustomStageLoader: '/API/CSL/CustomStageLoader',
-			StageBackground: '/API/StageBackground'
+			TilingAnimatedSprite: '/API/LIB/TilingAnimatedSprite',
+			StageCanvas: '/API/StageCanvas',
+			StageBackground: '/API/StageBackground',
+			StageLayer: '/API/StageLayer',
+			StageElement: '/API/StageElement'
 		};
 		const INHERIT_MAP = {
 			CanvasLayer: 'Node',
 			CanvasItem: 'Node',
 			ParallaxBackground: 'CanvasLayer',
 			ParallaxLayer: 'Node2D',
+			Camera2D: 'Node2D',
 			Node: 'Object',
 			Node2D: 'CanvasItem',
 			Reference: 'Object',
+			Resource: 'Reference',
+			Texture: 'Resource',
+			StreamTexture: 'Texture',
+			SpriteFrames: 'Resource',
+			TilingAnimatedSprite: 'Node2D',
 
-			StageBackground: 'ParallaxBackground',
 			StageCanvas: 'CanvasLayer',
-			StageElement: 'TilingSprite',
-			TilingSprite: 'Node2D'
+			StageBackground: 'ParallaxBackground',
+			StageLayer: 'ParallaxLayer',
+			StageElement: 'TilingAnimatedSprite',
 		}
 
 		function renderType(_type, frontmatter) {
@@ -168,6 +179,11 @@
 								const postHeaderTable = [];
 								if (prop.default !== undefined)
 									postHeaderTable.push(['<i>Default</i>', `<code>${prop.default}</code>`]);
+								if (prop.getter !== undefined)
+									postHeaderTable.push(['<i>Getter</i>', `<code>${prop.getter}</code>`]);
+								if (prop.setter !== undefined)
+									postHeaderTable.push(['<i>Setter</i>', `<code>${prop.setter}</code>`]);
+								
 								if (postHeaderTable.length)
 									result += '\n\n<table><tbody>' + postHeaderTable.map((row) => `<tr>${row.map((cell) => `<td>${cell}</td>`).join('')}</tr>`).join('') + '</tbody></table>'
 
@@ -219,6 +235,10 @@
 
 								return result;
 							}).join('\n\n---\n\n')
+						},
+						renderName() {
+							if (!this.name) return '# Unnamed class';
+							return '# ' + this.name;
 						},
 					}
 				]

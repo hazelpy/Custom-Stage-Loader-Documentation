@@ -14,20 +14,20 @@ This block of code below contains everything you'll need to have in your `ModMai
 extends Node
 
 # Loads the CustomStageBuilder class, for use in metadata building
-onready var CustomStageBuilder = load("res://custom_stage_loader/CustomStageBuilder.gd")
+onready var CustomStageBuilder = load("res://custom_stage_loader/CustomStageBuilder.gd");
 
-var Builder
-var Loader
+var Builder;
+var Loader;
 
 func _ready():
 	# We call the build_stage() function after the game's process queue clears up
 	# This is to ensure no errors occur.
-	call_deferred("build_stage")
+	call_deferred("build_stage");
 
 # Here is where the stage building takes place.
 func build_stage():
-	Builder = CustomStageBuilder.new() # For building the stage metadata
-	Loader = get_tree().get_root().get_node("CSL") # For loading the stage itself
+	Builder = CustomStageBuilder.new(); # For building the stage metadata
+	Loader = get_tree().get_root().get_node("CSL"); # For loading the stage itself
 ```
  
 ## Stage Building
@@ -44,11 +44,11 @@ We'll be adding a call to the builder's `make_background()` function. See [Custo
 # Here is where the stage building takes place.
 func build_stage():
 	Builder = CustomStageBuilder.new() # For building the stage metadata
-	Loader = get_tree().get_root().get_node("CSL") # For loading the stage itself
+	Loader = get_tree().get_root().get_node("CSL"); # For loading the stage itself
 
-	Builder.data.stage_name = "My First Stage" # Setting the name of the stage
+	Builder.data.stage_name = "My First Stage"; # Setting the name of the stage
 
-	Builder.make_background("GroundBackground", {"layer": 1}) # Creating a background to hold our layers setting it's index to 1, so it renders on front.
+	Builder.make_background("GroundBackground", {"layer": 1}); # Creating a background to hold our layers setting it's index to 1, so it renders on front.
 ```
 
 ?>`StageBackground`s, when noted from the `CustomStageBuilder` class, are typically only built to hold `StageLayer` instances.
@@ -61,9 +61,9 @@ in our case, this will be `GroundBackground`
 ```gdscript
 	# ...
 
-	Builder.make_background("GroundBackground", {"layer": 1}) # Creating a background to hold the ground layer, setting its index to "1"
+	Builder.make_background("GroundBackground", {"layer": 1}); # Creating a background to hold the ground layer, setting its index to "1"
 	
-	Builder.make_layer("GroundLayer", Builder.get_material_id("GroundBackground")) # Creating the ground layer, making it a child of GroundBackground
+	Builder.make_layer("GroundLayer", Builder.get_material_id("GroundBackground")); # Creating the ground layer, making it a child of GroundBackground
 ```
 
 ?>`StageLayer`s can also have one more additional parameter `data`, in which we can modify the behaviors of the Layer,
@@ -88,14 +88,16 @@ and to make the ground scroll forever.
 	# ...
 
 	# Ground
-	Builder.make_layer("GroundLayer", Builder.get_material_id("GroundBackground")) # Creating the ground layer, making it a child of MainBackground
+	Builder.make_layer("GroundLayer", Builder.get_material_id("GroundBackground")); # Creating the ground layer, making it a child of MainBackground
 
 	Builder.make_element("Ground", Builder.get_material_id("GroundLayer"), { # Creating the ground element and changing it's data 
 		"frames": "res://MyFirstStage/layers/ground.tres",
 		"position": Vector2(0, 75),
 		"h_tile": true
-	})
+	});
 ```
+
+?> Alternatively, you can manually create your SpriteFrames using code. See [*Creating sprite frames in code*](#frames)
 
 If you did everything right, this should be the result so far:
 
@@ -107,16 +109,16 @@ We can first create a blue background, using the `StageElement`'s `h_tile` and `
 ```gdscript
 	# ...
 
-	Builder.make_background("SkyBackground", {"layer": 0})
+	Builder.make_background("SkyBackground", {"layer": 0});
 
 	# Sky
-	Builder.make_layer("SkyLayer", Builder.get_material_id("SkyBackground")) # Creating the sky layer, making it a child of SkyBackground
+	Builder.make_layer("SkyLayer", Builder.get_material_id("SkyBackground")); # Creating the sky layer, making it a child of SkyBackground
 
 	Builder.make_element("Sky", Builder.get_material_id("SkyLayer"), { # Creating the sky element and changing it's data 
 		"frames": "res://MyFirstStage/layers/sky.tres",
 		"h_tile": true,
 		"v_tile": true,
-	})
+	});
 ```
 
 To give depth perception, we can now add some clouds and change their `StageLayer` data to modify the `motion_scale` values, creating a parallax effect.
@@ -128,14 +130,22 @@ In my case, i added several sprites to my `SpriteFrames` resource of the clouds,
 	# Clouds
 	Builder.make_layer("CloudsLayer", Builder.get_material_id("SkyBackground"), {# Creating the clouds layer, making it a child of MainBackground
 		"motion_scale": Vector2(0.8, 0.8),
-	})
+	});
 
 	Builder.make_element("Clouds", Builder.get_material_id("CloudsLayer"), { # Creating the cloud element and changing it's data 
 		"active": true,
 		"frames": "res://MyFirstStage/layers/clouds.tres",
 		"position": Vector2(0, -150),
 		"h_tile": true,
-	})
+	});
+```
+
+Lastly, all we have to do now is add our stage using the `Loader` from before:
+
+```gdscript
+	# ...
+	
+	Loader.add_stage(Builder.data);
 ```
 
 After all that, we have completed our stage!
@@ -174,3 +184,23 @@ Feel free to download this example stage yourself and try it out! The download l
 
 ?>Feel free to explore the rest of the documentation and see what results you can come up with! <br>
 Come and share how your first stage turned out in our [Discord server](https://discord.gg/keTcqpUQVG).
+
+----
+
+### Creating sprite frames within code :id=frames
+
+Using the following code, we can create and utilize sprite frames within code. This is for if you don't want to open Godot Engine while implementing your stage.
+
+```gdscript
+	# ...
+
+	var ground_frames = SpriteFrames.new(); # Instantiate new SpriteFrames object
+	ground_frames.add_frame("Default", load("res://path/to/image.png")); # Add a frame to the default animation
+	
+	# We can substitute the path to the SpriteFrames asset, replacing it with our fresh reference instead.
+	Builder.make_element("Ground", Builder.get_material_id("GroundLayer"), {
+		"frames": ground_frames,
+		"position": Vector2(0, 75),
+		"h_tile": true
+	});
+```

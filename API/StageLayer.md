@@ -9,7 +9,7 @@ properties:
     description: An array that holds this layer's children.
 ---
 
-# StageLayer
+{{{renderName}}}
 
 {{{renderInherits}}}
 

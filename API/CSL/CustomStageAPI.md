@@ -5,7 +5,7 @@ inherits: Node
 properties:
   - name: root_binds
     type: "Dictionary[]"
-    description: Contains information for all stage element root hooks. See [Root hooks](hooks.md)
+    description: Contains information for all stage element root hooks. See [*Root hooks*](root_hooks.md)
 	
 methods:
   - name: load_object
@@ -20,7 +20,7 @@ methods:
     returns: Object
 ---
 
-# CustomStageAPI
+{{{renderName}}}
 
 {{{renderInherits}}}
 
