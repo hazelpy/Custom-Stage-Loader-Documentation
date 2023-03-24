@@ -195,6 +195,7 @@ Using the following code, we can create and utilize sprite frames within code. T
 	# ...
 
 	var ground_frames = SpriteFrames.new(); # Instantiate new SpriteFrames object
+	ground_frames.add_animation("Default"); # Ensure that the default animation exists
 	ground_frames.add_frame("Default", load("res://path/to/image.png")); # Add a frame to the default animation
 	
 	# We can substitute the path to the SpriteFrames asset, replacing it with our fresh reference instead.

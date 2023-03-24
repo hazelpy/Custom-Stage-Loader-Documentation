@@ -85,7 +85,7 @@ methods:
 
 This class is the main holder for tiling animated sprites in the stage.
 
-[](../../notice.md ':include')
+[](../notice.md ':include')
 
 ## Description
 

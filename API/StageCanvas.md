@@ -52,7 +52,7 @@ methods:
 
 This class holds stage materials.
 
-[](../../notice.md ':include')
+[](../notice.md ':include')
 
 ## Description
 
