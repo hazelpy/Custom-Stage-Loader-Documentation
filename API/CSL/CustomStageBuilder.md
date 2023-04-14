@@ -166,6 +166,18 @@ methods:
       Gets the metadata of all materials of type `query`, recursively. If `array` equals -1, the [data.materials](#data) array is used as the root.
 
       Returns an array containing all pieces of metadata with the `type` key set to `query`.
+  - name: make_spriteframes_animation
+    returns: SpriteFrames
+    description: |
+      Creates sprite frames out of all PNG images in a folder.
+
+      Returns the sprite frames object from the images.
+  - name: make_spriteframes_image
+    returns: SpriteFrames
+    description: |
+      Creates sprite frames out of a single image.
+
+      Returns the sprite frames object from the image.
 ---
 
 {{{renderName}}}
