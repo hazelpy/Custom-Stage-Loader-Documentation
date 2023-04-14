@@ -43,6 +43,11 @@ properties:
     getter: get_offset()
     description: Determines how offset the sprite is from its anchor point. Anchor point is determined by [`centered`](#centered).
 
+  - name: mirror
+    type: "bool"
+    default: "false"
+    description: Determines whether or not the sprite's repeated texture are mirrored.
+
   - name: h_tile
     type: "bool"
     default: "false"
