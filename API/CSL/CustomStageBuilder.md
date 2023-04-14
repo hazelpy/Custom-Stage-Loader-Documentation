@@ -168,12 +168,18 @@ methods:
       Returns an array containing all pieces of metadata with the `type` key set to `query`.
   - name: make_spriteframes_animation
     returns: SpriteFrames
+    args:
+      - name: path
+        type: String
     description: |
       Creates sprite frames out of all PNG images in a folder.
 
       Returns the sprite frames object from the images.
   - name: make_spriteframes_image
     returns: SpriteFrames
+    args:
+      - name: path
+        type: String
     description: |
       Creates sprite frames out of a single image.
 
